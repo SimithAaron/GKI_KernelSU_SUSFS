@@ -7,6 +7,11 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
+      build_mksu-a12:
+        description: 'Build mksu-Android 12 kernel?'
+        required: true
+        type: boolean
+        default: true
       build_a12:
         description: 'Build Android 12 kernel?'
         required: true
@@ -29,6 +34,10 @@ on:
         default: false
 
 jobs:
+  build-kernel-mksu-a12-5-10:
+    uses: ./.github/workflows/build-kernel-a12-5.10.yml
+    secrets: inherit
+    if: ${{ inputs.build_mksu-a12 }}
   build-kernel-a12-5-10:
     uses: ./.github/workflows/build-kernel-a12-5.10.yml
     secrets: inherit
