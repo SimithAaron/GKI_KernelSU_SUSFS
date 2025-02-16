@@ -35,7 +35,7 @@ on:
 
 jobs:
   build-kernel-mksu-a12-5-10:
-    uses: ./.github/workflows/build-kernel-a12-5.10.yml
+    uses: ./.github/workflows/Mksu-A12-5.10.yml
     secrets: inherit
     if: ${{ inputs.build_mksu-a12 }}
   build-kernel-a12-5-10:
@@ -66,6 +66,7 @@ jobs:
   trigger-release:
     runs-on: ubuntu-latest
     needs:
+        - build-kernel-mksu-a12-5-10
         - build-kernel-a12-5-10
         - build-kernel-a13-5-10
         - build-kernel-a13-5-15
